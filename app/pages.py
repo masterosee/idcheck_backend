@@ -5,19 +5,20 @@ INSCRIPTION_HTML = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Inscription membre</title>
 <style>
-  :root { --bg:#f4f5fb; --card:#fff; --txt:#1c1d2b; --muted:#666a80; --accent:#3f4a8a; --err:#b3261e; --ok:#1b7a3d; --line:#cfd2e3; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#14151f; --card:#1e2030; --txt:#eceefa; --muted:#a3a7c0; --accent:#8e9cf0; --err:#ff8a80; --ok:#7bd99a; --line:#3a3d57; }
-  }
+  :root { --txt:#eef6ff; --muted:#b4c6dc; --accent:#22d3ee; --err:#ff8a80; --ok:#7bd99a; --line:rgba(255,255,255,.35); }
   * { box-sizing: border-box; }
-  body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:var(--bg); color:var(--txt); }
+  body { margin:0; min-height:100vh; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--txt); background:#000; }
+  body::before { content:""; position:fixed; inset:0; z-index:-1;
+    background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('/fond.jpg') center / cover no-repeat #000; }
   main { max-width: 440px; margin: 0 auto; padding: 24px 16px 40px; }
-  .card { background:var(--card); border-radius:16px; padding:22px; box-shadow:0 2px 10px rgba(0,0,0,.08); }
+  .card { background:rgba(10,26,47,.55); border:1px solid rgba(34,211,238,.45); border-radius:18px; padding:22px; }
   h1 { font-size:1.4rem; margin:0 0 4px; }
   p.sub { color:var(--muted); margin:0 0 18px; font-size:.95rem; }
   label { display:block; font-weight:600; margin:14px 0 6px; font-size:.95rem; }
-  input, select { width:100%; padding:13px; font-size:1rem; border:1px solid var(--line); border-radius:10px; background:transparent; color:var(--txt); }
-  button { width:100%; margin-top:22px; padding:14px; font-size:1.05rem; font-weight:600; border:0; border-radius:12px; background:var(--accent); color:#fff; }
+  input, select { width:100%; padding:13px; font-size:1rem; border:1px solid var(--line); border-radius:10px; background:rgba(255,255,255,.08); color:var(--txt); }
+  select option { background:#0a1a2f; color:#fff; }
+  input:focus, select:focus { outline:2px solid var(--accent); border-color:transparent; }
+  button { width:100%; margin-top:22px; padding:14px; font-size:1.05rem; font-weight:700; border:0; border-radius:12px; background:var(--accent); color:#04222b; }
   button:disabled { opacity:.6; }
   #msg { margin-top:16px; font-size:.97rem; line-height:1.4; }
   .err { color:var(--err); } .ok { color:var(--ok); }

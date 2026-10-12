@@ -1,11 +1,12 @@
 from typing import Optional
 import os
+import pathlib
 import time
 from collections import defaultdict, deque
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from rapidfuzz import fuzz
 from sqlalchemy import select
@@ -50,6 +51,15 @@ def health():
 @app.get("/", include_in_schema=False)
 def home():
     return RedirectResponse("/inscription")
+
+
+_FOND = pathlib.Path(__file__).parent / "fond.jpg"
+
+
+@app.get("/fond.jpg", include_in_schema=False)
+def fond():
+    return FileResponse(_FOND, media_type="image/jpeg",
+                        headers={"Cache-Control": "public, max-age=86400"})
 
 
 @app.get("/inscription", response_class=HTMLResponse, include_in_schema=False)
